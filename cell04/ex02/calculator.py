@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+num1_str = input("Give me the first number :")
+num2_str = input("Give me the second number :")
+print("Thank you!!")
+num1_int = int(num1_str)
+num2_int = int(num2_str)
+print(f"{num1_int} + {num2_int} = {num1_int + num2_int}")
+print(f"{num1_int} - {num2_int} = {num1_int - num2_int}")
+print(f"{num1_int} / {num2_int} = {num1_int / num2_int}")
+print(f"{num1_int} * {num2_int} = {num1_int * num2_int}")
