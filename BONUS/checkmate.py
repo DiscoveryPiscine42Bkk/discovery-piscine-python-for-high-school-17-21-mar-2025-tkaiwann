@@ -5,7 +5,6 @@ import numpy as np
 pieces = [".", "P", ".", "Q", ".", "B", ".", "R"]
 pieces2 = [".", ".", ".", ".", "K", ".", ".", "."]
 empty_row = ["."] * 8
-
 # ตัวแปร
 Py1=0 
 Px1=1 
@@ -157,12 +156,15 @@ def check_mate():
         print("Now is King's turn !!!")
         Key = (int(input("Enter you destination of y >> ")))
         Kex = (int(input("Enter you destination of x >> ")))
-        move_piece(board,(Ky,Kx),(Key,Kex))
-        print(is_valid_move(board,(Ky,Kx),(Key,Kex)))
-        print(board)
-        Ky=Key
-        Kx=Kex
-        check_mate()
+        if (((Key == Ky)and((Kex == Kx+1)or(Kex == Kx-1)))or((Key == Ky-1)or((Kex == Kx+1)or(Kex == Kx-1)))or((Key == Ky+1)or((Kex == Kx+1)or(Kex == Kx-1)))):
+          move_piece(board,(Ky,Kx),(Key,Kex))
+          print(is_valid_move(board,(Ky,Kx),(Key,Kex)))
+          print(board)
+          Ky=Key
+          Kx=Kex
+          check_mate()
+        else :
+            print("Error")
 
 def Play():
     walk()
