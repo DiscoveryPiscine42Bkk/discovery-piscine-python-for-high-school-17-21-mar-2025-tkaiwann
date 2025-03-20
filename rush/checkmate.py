@@ -1,3 +1,4 @@
+#!/bin/env python3
 import numpy as np
 
 # ตั้งค่าคอนฟิกชิ้นหมากรุกและม้วนหมากรุก
@@ -50,8 +51,8 @@ def is_valid_move(board, start_pos, end_pos):
     target = board[end_pos[0]][end_pos[1]]
     if target != "." and target.isupper() == piece.isupper():
         return False
-
     return True
+    # print(board)
 
 # สมมติว่าเรากำลังย้ายม้าจาก (0,1) ไป (2,2)
 print(is_valid_move(board, (0,1), (2,2)))
@@ -79,6 +80,7 @@ def walk():
         Pex = (int(input("Enter you destination of x >> ")))
         if (Pey == Py1+1) and (Pex == Px1-1 or Pex == Px1+1):
            move_piece(board, P, (Pey,Pex))
+           print(is_valid_move(board,(Py1,Px1),(Pey,Pex)))
            print(board)
            Px1=Pex
            Py1=Pey
@@ -90,9 +92,11 @@ def walk():
         Rex = (int(input("Enter you destination of x >> ")))
         if (Rey == Ry1) and (0 <= Rex < 8):
            move_piece(board, R, (Rey,Rex))
+           print(is_valid_move(board,(Ry1,Rx1),(Rey,Rex)))
            print(board)
         elif (Rex == Rx1) and (0 <= Rey < 8):
            move_piece(board, R, (Rey,Rex))
+           print(is_valid_move(board,(Ry1,Rx1),(Rey,Rex)))
            print(board)
         else:
             print("NOOB!!")
@@ -104,6 +108,7 @@ def walk():
         Bex = (int(input("Enter you destination of x >> ")))
         if (Bex - Bx1) != 0 and((Bey-By1)/(Bex-Bx1)==1) or ((Bey-By1)/(Bex-Bx1)==-1):
            move_piece(board, B, (Bey,Bex))
+           print(is_valid_move(board,(By1,Bx1),(Bey,Bex)))
            print(board)
         else:
             print("NOOB!!")
@@ -124,6 +129,7 @@ def walk():
            print(board)
         else:
             print("NOOB!!")
+        print(is_valid_move(board,(Qy1,Qx1),(Qey,Qex)))
         Qx1=Qex
         Qy1=Qey
     else:
@@ -149,23 +155,18 @@ def check_mate():
     else:
         print("Fail")
         print("Now is King's turn !!!")
-        Ky = (int(input("Enter you destination of y >> ")))
-        Kx = (int(input("Enter you destination of x >> ")))
+        Key = (int(input("Enter you destination of y >> ")))
+        Kex = (int(input("Enter you destination of x >> ")))
+        move_piece(board,(Ky,Kx),(Key,Kex))
+        print(is_valid_move(board,(Ky,Kx),(Key,Kex)))
+        print(board)
+        Ky=Key
+        Kx=Kex
+        check_mate()
 
 def Play():
     walk()
     check_mate()
 
         
-
-    
-
-# # เคลื่อนม้าจาก (0,1) ไป (2,2)
-# move_piece(board, (0,1), (2,2))
-# print(board)
-
-# move_piece(board, (1,0), (2,1))
-# print(board)
-
-
 Play()
